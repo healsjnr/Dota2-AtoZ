@@ -2,6 +2,8 @@ require 'version'
 require 'rest-client'
 require 'json'
 require 'model/dota_model'
+require 'dm-sqlite-adapter'
+require 'data_mapper'
 
 module Dota2
   
@@ -35,7 +37,7 @@ module Dota2
       @key = key
       @locale = locale
       DataModel.connect
-      DataModel::Logger.new($stdout, :debug)
+      DataMapper::Logger.new($stdout, :debug)
     end
 
   
@@ -53,7 +55,7 @@ module Dota2
   
     def get_heroes
       cached_heroes = Hero.all
-      return cache_heroes unless cache_heroes.empty?
+      return cached_heroes unless cached_heroes.empty?
       heroes = {}
       get(:heroes)[:result][:heroes].each do |h|
         heroes[h[:id]] = { :name => h[:localized_name] , :dota_name => h[:name] }

@@ -20,3 +20,4 @@ tmp
 *.class
 *.DS_Store
 *.key
+*.db
