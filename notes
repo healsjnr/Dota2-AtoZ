@@ -1,0 +1,8 @@
+Data model:
+
+  - Players
+  - Heroes
+  - Matches
+ 
+  - Match Hitory will always need to be got, however, the details can be
+    cached. 
